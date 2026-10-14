@@ -8,6 +8,7 @@
   padding: 20px;
   border-radius: 18px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  border: 4px solid rgb(241, 225, 110);
 }
 
 .columnTitle {
@@ -17,6 +18,7 @@
   margin-bottom: 18px;
   font-size: 1rem;
   font-weight: 700;
+ 
 }
 
 .poemLink {
@@ -34,7 +36,8 @@
   flex: 1 1 auto;
   overflow: hidden;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(59, 42, 30, 0.24);
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .poemCoverContainer {
@@ -58,12 +61,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* تغییر یافته: خطوط را به شروع کادر (سمت راست) می‌فرستد */
   padding: 20px;
+  padding-right: 50px;
   box-sizing: border-box;
-  text-align: center;
+  text-align: right;       /* تغییر یافته: متن را راست‌چین می‌کند */
+  direction: rtl;          /* اضافه شده: جهت خواندن و چیدمان را برای زبان فارسی تنظیم می‌کند */
 }
-
 .poemTextContent h4 {
   margin: 0 0 10px 0;
   font-size: 1.1rem;
@@ -76,9 +80,82 @@
   color: #e8e3dc;
 }
 
-.poemAuthor {
-  display: block;
-  margin-top: 15px;
-  font-size: 0.85rem;
-  color: #d8d2c8;
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  transition: background 180ms ease;
+  border-radius: 14px;
+}
+
+.poemCard:hover .playOverlay {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.allPoemsLink {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f2a24;
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 1px solid #d8d0c2;
+  transition: color 180ms ease;
+}
+
+.allPoemsLink:hover {
+  color: #666;
+}
+
+/* ===== هاور کارت شعر تصویری (فقط استایل؛ افزوده‌شده) ===== */
+.poemCard:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 30px -14px rgba(59, 42, 30, 0.42),
+    inset 0 -20px 24px -18px rgba(59, 42, 30, 0.34);
+}
+
+@media (max-width: 640px) {
+  .featuredPoemColumn {
+    padding: 14px;
+    border-radius: 14px;
+    border-width: 3px;
+  }
+
+  .poemCard {
+    min-height: 220px;
+  }
+
+  .poemTextContent {
+    padding: 16px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .featuredPoemColumn {
+    padding: 12px;
+  }
+
+  .poemCard {
+    min-height: 200px;
+    border-radius: 12px;
+  }
+
+  .poemTextContent {
+    padding: 14px;
+    padding-right: 14px;
+  }
+
+  .poemTextContent h4 {
+    font-size: 1rem;
+  }
+
+  .poemTextContent p {
+    font-size: 0.88rem;
+  }
 }
